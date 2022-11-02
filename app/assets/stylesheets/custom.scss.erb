@@ -14,7 +14,13 @@ $gray-medium-light: #eaeaea;
 /* universal */
 
 body {
+  min-height: 100vh;
+  background-image: url("<%= asset_path('corkboard_middle_short.jpg') %>");
+  background-size: contain;
   padding-top: 60px;
+  padding-bottom: 60px;
+  background-position-y: 0;
+  position: relative;
 }
 
 section {
@@ -62,6 +68,18 @@ p {
 
 /* header */
 
+header {
+  background-image: url("<%= asset_path('corkboard_upper.jpg') %>");
+  background-repeat: no-repeat;
+  background-size: cover;
+  a {
+    color: white;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
 #logo {
   float: left;
   margin-right: 10px;
@@ -80,27 +98,13 @@ p {
 /* footer */
 
 footer {
-  margin-top: 45px;
-  padding-top: 5px;
-  border-top: 1px solid $gray-medium-light;
-  color: $gray-light;
-  a {
-    color: $gray;
-    &:hover {
-      color: $gray-darker;
-    }
-  }
-  small {
-    float: left;
-  }
-  ul {
-    float: right;
-    list-style: none;
-    li {
-      float: left;
-      margin-left: 15px;
-    }
-  }
+  background-image: url("<%= asset_path('corkboard_under.jpg') %>");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 60px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
 }
 
 /* miscellaneous */
@@ -249,7 +253,6 @@ input {
   padding: 0;
   li {
     padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
   }
   .user {
     margin-top: 5em;
@@ -257,10 +260,10 @@ input {
   }
   .content {
     display: block;
-    margin-left: 60px;
+    margin-left: 30px;
     img {
       display: block;
-      padding: 5px 0;
+      padding: 7px;
     }
   }
   .timestamp {
@@ -287,4 +290,53 @@ span.image {
   input {
     border: 0;
   }
+}
+
+/* signup, edit_user, login */
+.signup, .edit_user {
+  background-image: url("<%= asset_path('husen2.png') %>");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 52% center;
+  margin: 60px 80px 30px 80px;
+  padding: 70px 70px 70px 70px;
+}
+
+.login {
+  background-image: url("<%= asset_path('husen2.png') %>");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 52% center;
+  margin: 60px 80px 30px 80px;
+  padding: 70px 70px 70px 70px;
+}
+
+.welcome {
+  margin: 60px 80px 30px 80px;
+  padding: 70px 70px 70px 70px;
+  position: center;
+  h1 {
+  margin-bottom: 20px;
+  }
+}
+
+/* micropost-home */
+.contribute-element {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.pin {
+  background-image: url("<%= asset_path('pin.png') %>");
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 14px;
+  left: 170px;
+}
+
+.contribute-element img {
+  padding: 5px 10px;
+  background-clip: padding-box;
+  background-color: #ffffff;
+  position: relative;
 }

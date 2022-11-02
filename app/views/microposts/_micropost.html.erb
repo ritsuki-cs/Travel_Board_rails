@@ -1,18 +1,7 @@
-<li id="micropost-<%= micropost.id %>">
-  <!--<%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>-->
-  <!--<span class="user"><%= link_to micropost.user.name, micropost.user %></span>-->
-  <span class="content">
-    <!--<%= micropost.content %>-->
-    <!--<% micropost.images.each do |image| %>-->
-    <!--  <%= image_tag micropost.display_image(image) %>-->
-    <!--<% end %>-->
-    <%= link_to image_tag(micropost.display_image(micropost.images[0])), micropost %>
-  </span>
-  <!--<span class="timestamp">-->
-    <!--Posted <%= time_ago_in_words(micropost.created_at) %> ago.-->
-    <!--<% if current_user?(micropost.user) %>-->
-      <%#= link_to "delete", micropost, method: :delete,
-                                       data: { confirm: "You sure?" } %>
-    <!--<% end %>-->
-  <!--</span>-->
+<li id="micropost-<%= micropost.id %>" class="col-lg-4 contribute-element">
+  <div class="content">
+    <%= link_to image_tag(micropost.display_image(micropost.images[0]), width: "300", height: "250"), micropost %>
+  </div>
+  <div class="pin">　
+  </div>
 </li>
