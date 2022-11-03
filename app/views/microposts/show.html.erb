@@ -1,27 +1,41 @@
 <% provide(:title, "Post Detail") %>
 <div class="row">
-  <div class="col-md-8">
-    <h3>Microposts</h3>
+  <div class="title">
+    <h1>Micropost</h1>
+  </div>
+  <div class="col-md-7">
     <ol class="microposts">
-      <span class="content">
-        <% @micropost.images.each do |image| %>
-          <%= image_tag @micropost.display_image(image) %>
-        <% end %>
-      </span>
-      <span class="timestamp">
-      </span>
+      <div class="content image-detail">
+        <ul class="slider">
+          <% @micropost.images.each do |image| %>
+          <li><%= image_tag @micropost.display_image(image) %></li>
+          <% end %>
+        </ul>
+      </div>
     </ol>
   </div>
-  <aside class="col-md-4">
-    <section class="user_info">
-      <%= link_to gravatar_for(@micropost.user, size: 40), @micropost.user %>
-      <span class="user"><%= link_to @micropost.user.name, @micropost.user %></span><br><br>
-      <p><%= @micropost.content %></p>
-      <p>Posted <%= time_ago_in_words(@micropost.created_at) %> ago.</p>
-      <% if current_user?(@micropost.user) %>
-        <%= link_to "delete", @micropost, method: :delete,
-                                         data: { confirm: "You sure?" } %>
-      <% end %>
-    </section>
+  <aside class="col-md-5">
+    <div class="user_card">
+      <section class="user_info">
+        <%= link_to gravatar_for(@micropost.user, size: 40), @micropost.user %>
+        <span class="user"><%= link_to @micropost.user.name, @micropost.user %></span><br><br>
+        <p><%= @micropost.content %></p>
+        <p>Posted <%= time_ago_in_words(@micropost.created_at) %> ago.</p>
+        <% if current_user?(@micropost.user) %>
+          <%= link_to "delete", @micropost, method: :delete,
+                                           data: { confirm: "You sure?" } %>
+        <% end %>
+      </section>
+    </div>
   </aside>
 </div>
+
+
+<%# slick %>
+<script>
+$('.slider').slick({
+  autoplay:false,
+  autoplaySpeed:5000,
+  dots:true,
+});
+</script>

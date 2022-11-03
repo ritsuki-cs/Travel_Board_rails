@@ -52,7 +52,7 @@ h1 {
 }
 
 h2 {
-  font-size: 1.2em;
+  font-size: 2em;
   letter-spacing: -1px;
   margin-bottom: 30px;
   text-align: center;
@@ -120,6 +120,18 @@ footer {
 /* sidebar */
 
 aside {
+  .user_card{
+    background-color: white;
+    border-radius: 15px;
+    margin: 10% 0;
+    height: 300px;
+    width: 100%;
+    padding: 5px 15px;
+    .btn {
+      margin-top: 10px;
+    }
+  }
+  
   section.user_info {
     margin-top: 20px;
   }
@@ -159,9 +171,7 @@ aside {
   margin-top: 0;
   padding: 0;
   a {
-    float: left;
     padding: 0 10px;
-    border-left: 1px solid $gray-lighter;
     color: gray;
     &:first-child {
       padding-left: 0;
@@ -315,8 +325,9 @@ span.image {
   margin: 60px 80px 30px 80px;
   padding: 70px 70px 70px 70px;
   position: center;
+  border-radius: 30px;
   h1 {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
   }
 }
 
@@ -339,4 +350,62 @@ span.image {
   background-clip: padding-box;
   background-color: #ffffff;
   position: relative;
+}
+
+.title {
+    background-color: white;
+    border-radius: 10px;
+    width: 50%;
+    height: 70px;
+    vertical-align: middle;
+  h1, h2 {
+    text-align: center;
+    color: #deb887;
+    line-height: 70px;
+  }
+  margin: 0 auto 50px auto;
+}
+
+/*slick setting*/
+.slick-prev:before,
+.slick-next:before {
+  color: #000;
+}
+.slider {
+  position: absolute;
+  padding: 1vw;
+  width: 47%;
+  height: 24vw;
+  float: left;
+  top: 1vw;
+}
+.slider img {
+  height: 18vw;
+  width: auto;
+  object-fit: cover;
+  margin: auto;
+  margin-top: 2vw;
+}
+.image-detail ul {
+  position: relative;
+  bottom: 5vw;
+  background: #fffcf4;
+  border-radius: 15px; /*角の丸み*/
+  box-shadow: none;
+  padding: 0.1vw;
+  margin-top: 5vw;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  li {
+    line-height: 1.5;
+    padding: 0.5em 0;
+  }
+  .slick-dots {
+    height: 0;
+  }
+}
+.edit a,
+.delete a {
+  color: white;
 }

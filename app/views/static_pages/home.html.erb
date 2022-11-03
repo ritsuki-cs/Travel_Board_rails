@@ -1,6 +1,8 @@
 <% provide(:title, "Home") %>
 <% if logged_in? %>
-  <h1 class="title">Micropost Feed</h1>
+  <div class="title">
+    <h1>Micropost Feed</h1>
+  </div>
   <div class="row">
     <%= render 'shared/feed' %>
   </div>

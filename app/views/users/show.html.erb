@@ -1,20 +1,25 @@
 <% provide(:title, @user.name) %>
 <div class="row">
   <aside class="col-md-2">
-    <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-    </section>
-    <section class="stats">
-      <%= render 'shared/stats' %>
-    </section>
+    <div class="user_card">
+      <section class="user_info">
+        <h1>
+          <%= gravatar_for @user %>
+          <%= @user.name %>
+        </h1>
+      </section>
+      <section class="stats">
+        <%= render 'shared/stats' %>
+      </section>
+      <%= link_to "New Post", new_micropost_path, class: "btn btn-primary" %>
+    </div>
   </aside>
   <div class="col-md-10">
     <%= render 'follow_form' if logged_in? %>
     <% if @user.microposts.any? %>
-      <h3>Microposts (<%= @user.microposts.count %>)</h3>
+      <div class="title">
+        <h2>Microposts (<%= @user.microposts.count %>)</h2>
+      </div>
       <ol class="microposts">
         <%= render @microposts %>
       </ol>
