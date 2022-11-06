@@ -13,6 +13,11 @@ $gray-medium-light: #eaeaea;
 
 /* universal */
 
+.container {
+  vertical-align: middle;
+  display: table-cell;
+}
+
 body {
   min-height: 100vh;
   background-image: url("<%= asset_path('corkboard_middle_short.jpg') %>");
@@ -322,13 +327,14 @@ div.image {
 }
 
 .welcome {
-  margin: 60px 80px 30px 80px;
-  padding: 70px 70px 70px 70px;
+  padding: 30px;
   position: center;
   border-radius: 30px;
   h1 {
     margin-bottom: 20px;
+    font-size: 100px;
   }
+  background-color: none;
 }
 
 /* micropost-home */
