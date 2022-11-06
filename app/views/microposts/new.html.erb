@@ -4,9 +4,134 @@
   <div class="title">
     <h1>Create Micropost</h1>
   </div>
-  <div class="col-md-6 col-md-offset-3">
+  <div class="map col-md-8">
+    <div id="map"></div>
+  </div>
+  <div class="col-md-4">
+    <input type="text" name="input_place" id="input_place" placeholder="Input place..." class="form-control mr-sm-2">
+    <%= button_tag "Search", { id: "search_place", class: "btn" } %>
     <section class="micropost_form">
       <%= render 'shared/micropost_form' %>
     </section>
   </div>
 </div>
+
+
+<script type="text/javascript">
+  // Google Map API
+  var map;
+  var marker;
+  $(function a() {
+    $(function initMap() {
+      var default_point = new google.maps.LatLng(35.689, 139.692);
+  
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: default_point,
+        zoom: 15
+      });
+      
+      marker = new google.maps.Marker({
+        position: default_point,
+        map: map
+      });
+    });
+  });
+  
+  $("#search_place").click(function(){
+    var place = $("#input_place").val();
+    console.log(place);
+  　var geocoder = new google.maps.Geocoder();      // geocoderのコンストラクタ
+  　
+  　geocoder.geocode({
+      address: place
+    }, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+
+        var bounds = new google.maps.LatLngBounds();
+
+        for (var i in results) {
+          if (results[0].geometry) {
+            // 緯度経度を取得
+            var latlng = results[0].geometry.location;
+            // 住所を取得
+            var address = results[0].formatted_address;
+            // 検索結果地が含まれるように範囲を拡大
+            bounds.extend(latlng);
+            // マーカーのセット
+            setMarker(latlng);
+            // マーカーへの吹き出しの追加
+            setInfoW(place, latlng, address);
+            // マーカーにクリックイベントを追加
+            markerEvent();
+          }
+        }
+      } else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
+        alert("見つかりません");
+      } else {
+        console.log(status);
+        alert("エラー発生");
+      }
+    });
+  });
+  
+  // マーカーのセットを実施する
+  function setMarker(latlng) {
+    console.log(latlng);
+    // 既にあるマーカーを削除
+    deleteMakers();
+
+    marker = new google.maps.Marker({
+      position: latlng,
+      map: map,
+    });
+    
+    map.setCenter(latlng);
+    
+    $("#lat").val(latlng.lat());
+    $("#lng").val(latlng.lng());
+    $("#address").val($("#input_place").val());
+
+    //マーカーを削除する
+    function deleteMakers() {
+      if(marker != null){
+        marker.setMap(null);
+      }
+      marker = null;
+    }
+  }
+  
+  // マーカーへの吹き出しの追加
+  function setInfoW(place, latlng, address) {
+    infoWindow = new google.maps.InfoWindow({
+      content: "<a href='http://www.google.com/search?q=" + place + "' target='_blank'>" + place + "</a><br><br>" + latlng + "<br><br>" + address + "<br><br><a href='http://www.google.com/search?q=" + place + "&tbm=isch' target='_blank'>画像検索 by google</a>"
+    });
+  }
+
+  // クリックイベント
+  function markerEvent() {
+    marker.addListener('click', function() {
+      infoWindow.open(map, marker);
+    });
+  }
+  
+  
+  $(function initAutocomplete() {
+    //対応させるテキストボックス
+    var input = document.getElementById('input_place');
+    //プレイスを検索する領域
+    var LatLngFrom = new google.maps.LatLng(35.692195,139.7576653);
+    var LatLngTo   = new google.maps.LatLng(35.696157,139.7525771);
+    var bounds = new google.maps.LatLngBounds(LatLngFrom, LatLngTo);
+　　//オートコンプリートのオプション
+    var options = {
+        // types: ['(regions)'],                      // 検索タイプ
+        bounds: bounds,                            // 範囲優先検索
+        componentRestrictions: {country: 'jp'}     // 日本国内の住所のみ
+    };
+    autocomplete = new google.maps.places.Autocomplete(input, options);
+  });
+  
+  
+  
+  
+</script>

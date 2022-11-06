@@ -8,6 +8,9 @@ class Micropost < ApplicationRecord
                                                       message: "must be a valid image format" },
                                       size:         { less_than: 5.megabytes,
                                                       message: "should be less than 5MB" }
+  validates :lat,     presence: true
+  validates :lng,     presence: true
+  validates :address, presence: true
   
   # 表示用のリサイズ済み画像を返す
   def display_image(image)

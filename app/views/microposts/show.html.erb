@@ -15,27 +15,51 @@
     </ol>
   </div>
   <aside class="col-md-5">
+    <div class="map_mini">
+      <div id="map_mini"></div>
+    </div>
     <div class="user_card">
       <section class="user_info">
         <%= link_to gravatar_for(@micropost.user, size: 40), @micropost.user %>
         <span class="user"><%= link_to @micropost.user.name, @micropost.user %></span><br><br>
-        <p><%= @micropost.content %></p>
-        <p>Posted <%= time_ago_in_words(@micropost.created_at) %> ago.</p>
-        <% if current_user?(@micropost.user) %>
-          <%= link_to "delete", @micropost, method: :delete,
-                                           data: { confirm: "You sure?" } %>
-        <% end %>
       </section>
+      <p><%= @micropost.address %></p>
+      <p><%= @micropost.content %></p>
+      <p>Posted <%= time_ago_in_words(@micropost.created_at) %> ago.</p>
+      <% if current_user?(@micropost.user) %>
+        <%= link_to "delete", @micropost, method: :delete,
+                                         data: { confirm: "You sure?" } %>
+      <% end %>
     </div>
   </aside>
 </div>
 
 
-<%# slick %>
-<script>
-$('.slider').slick({
-  autoplay:false,
-  autoplaySpeed:5000,
-  dots:true,
-});
+<script type="text/javascript">
+  // slick
+  $('.slider').slick({
+    autoplay:false,
+    autoplaySpeed:5000,
+    dots:true,
+  });
+  
+  // Google Map API
+  var map;
+  var marker;
+  $(function a() {
+    $(function initMap() {
+      var default_point = new google.maps.LatLng(<%= @micropost.lat %>, <%= @micropost.lng %>);
+  
+      map = new google.maps.Map(document.getElementById('map_mini'), {
+        center: default_point,
+        zoom: 14,
+        disableDefaultUI: true,
+      });
+      
+      marker = new google.maps.Marker({
+        position: default_point,
+        map: map
+      });
+    });
+  });
 </script>
