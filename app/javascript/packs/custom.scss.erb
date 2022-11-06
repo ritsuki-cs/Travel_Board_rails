@@ -1,6 +1,5 @@
 /* mixins, variables, etc. */
 
-
 $gray-medium-light: #eaeaea;
 
 @mixin box_sizing {
@@ -11,11 +10,16 @@ $gray-medium-light: #eaeaea;
 
 /* universal */
 
+.container {
+  vertical-align: middle;
+  display: table-cell;
+}
+
 body {
-  padding-top: 5rem; 
   min-height: 100vh;
   background-image: url("<%= asset_path('corkboard_middle_short.jpg') %>");
   background-size: contain;
+  padding-top: 60px;
   padding-bottom: 60px;
   background-position-y: 0;
   position: relative;
@@ -70,20 +74,6 @@ header {
   background-image: url("<%= asset_path('corkboard_upper.jpg') %>");
   background-repeat: no-repeat;
   background-size: cover;
-  
-  #logo {
-    float: left;
-    margin-right: 10px;
-    font-size: 2em;
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: -1px;
-    font-weight: bold;
-    &:hover {
-      color: white;
-      text-decoration: none;
-    }
-  }
   a {
     color: white;
     &:hover {
@@ -92,6 +82,20 @@ header {
   }
 }
 
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
 
 /* footer */
 
@@ -222,6 +226,7 @@ input {
 }
 
 .field_with_errors {
+  @extend .has-error;
   .form-control {
     color: text-danger;
   }
