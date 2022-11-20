@@ -11,56 +11,21 @@ $gray-medium-light: #eaeaea;
 
 /* universal */
 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  padding-top: 4rem; 
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background-image: url("<%= asset_path('corkboard_middle_short.jpg') %>");
   background-size: contain;
-  padding-bottom: 60px;
-  background-position-y: 0;
-  position: relative;
 }
 
-section {
-  overflow: auto;
-}
-
-textarea {
-  resize: vertical;
-}
-
-.center {
-  text-align: center;
-  h1 {
-    margin-bottom: 10px;
-  }
-}
-
-/* typography */
-
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
-}
-
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-h2 {
-  font-size: 2em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
-  color: rgba(#d3d3d3,1.0);
-}
-
-p {
-  font-size: 1.1em;
-  line-height: 1.7em;
+.alert {
+  width: 500px;
 }
 
 
@@ -70,6 +35,9 @@ header {
   background-image: url("<%= asset_path('corkboard_upper.jpg') %>");
   background-repeat: no-repeat;
   background-size: cover;
+  > div {
+    padding: 0 4%;
+  }
   
   #logo {
     float: left;
@@ -92,17 +60,134 @@ header {
 }
 
 
+/* main */
+
+main {
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+
 /* footer */
 
 footer {
   background-image: url("<%= asset_path('corkboard_under.jpg') %>");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 60px;
-  width: 100%;
-  position: absolute;
-  bottom: 0;
+  margin-top: auto;
+  text-align: center;
+  color: white;
+  padding: 15px 0;
+  p {
+    margin: 0;
+  }
 }
+
+
+/* welcome page */
+
+.welcome {
+  padding: 30px;
+  margin: auto;
+  h1 {
+    font-size: 100px;
+  }
+  h2 {
+    font-size: 60px;
+  }
+}
+
+
+/* signup, edit_user, login */
+
+.signup, .edit_user, .login {
+  background-image: url("<%= asset_path('husen2.png') %>");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: auto;
+  padding: 90px 90px 70px 60px;
+  flex-direction: column;
+  width: 600px;
+}
+
+
+/* forms */
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
+input {
+  height: auto !important;
+}
+
+#error_explanation {
+  color: red;
+}
+
+.field_with_errors {
+  .form-control {
+    color: text-danger;
+  }
+}
+
+.checkbox {
+  margin-top: -10px;
+  margin-bottom: 10px;
+  span {
+    margin-left: 20px;
+    font-weight: normal;
+  }
+}
+
+#session_remember_me {
+  width: auto;
+  margin-left: 0;
+}
+
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+/* typography */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  // color: rgba(#d3d3d3,1.0);
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
 
 /* miscellaneous */
 
@@ -199,46 +284,7 @@ aside {
   padding: 0;
 }
 
-/* forms */
 
-input, textarea, select, .uneditable-input {
-  border: 1px solid #bbb;
-  width: 100%;
-  margin-bottom: 15px;
-  @include box_sizing;
-}
-
-input {
-  height: auto !important;
-}
-
-#error_explanation {
-  color: red;
-  ul {
-    color: red;
-    margin: 0 0 30px 0;
-  }
-}
-
-.field_with_errors {
-  .form-control {
-    color: text-danger;
-  }
-}
-
-.checkbox {
-  margin-top: -10px;
-  margin-bottom: 10px;
-  span {
-    margin-left: 20px;
-    font-weight: normal;
-  }
-}
-
-#session_remember_me {
-  width: auto;
-  margin-left: 0;
-}
 
 /* Users index */
 
@@ -266,7 +312,7 @@ input {
   }
   .content {
     display: block;
-    margin-left: 30px;
+    margin-left: 40px;
     img {
       display: block;
       padding: 7px;
@@ -298,40 +344,28 @@ div.image {
   }
 }
 
-/* signup, edit_user, login */
-.signup, .edit_user {
-  background-image: url("<%= asset_path('husen2.png') %>");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: 52% center;
-  margin: 60px 80px 30px 80px;
-  padding: 70px 70px 70px 70px;
-}
 
-.login {
-  background-image: url("<%= asset_path('husen2.png') %>");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: 52% center;
-  margin: 60px 80px 30px 80px;
-  padding: 70px 70px 70px 70px;
-}
-
-.welcome {
-  padding: 30px;
-  position: center;
-  border-radius: 30px;
-  h1 {
-    margin-bottom: 20px;
-    font-size: 100px;
-  }
-  background-color: none;
-}
 
 /* micropost-home */
+.home {
+  height: 100%;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 20px;
+  .pagination {
+    margin-left: 30px;
+  }
+}
+
 .contribute-element {
   text-align: center;
-  margin-bottom: 70px;
+  margin-bottom: 60px;
+  img {
+    padding: 5px 10px;
+    background-clip: padding-box;
+    background-color: #ffffff;
+    position: relative;
+  }
 }
 
 .pin {
@@ -339,28 +373,19 @@ div.image {
   background-repeat: no-repeat;
   position: absolute;
   top: 14px;
-  left: 170px;
-}
-
-.contribute-element img {
-  padding: 5px 10px;
-  background-clip: padding-box;
-  background-color: #ffffff;
-  position: relative;
+  left: 180px;
 }
 
 .title {
-    background-color: white;
-    border-radius: 10px;
-    width: 50%;
-    height: 70px;
-    vertical-align: middle;
-  h1, h2 {
-    text-align: center;
-    color: #deb887;
-    line-height: 70px;
-  }
-  margin: 0 auto 50px auto;
+  background-color: white;
+  border-radius: 10px;
+  width: 50%;
+  height: 70px;
+  vertical-align: middle;
+  text-align: center;
+  color: #deb887;
+  line-height: 70px;
+  margin: 50px auto;
 }
 
 /*slick setting*/

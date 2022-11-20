@@ -1,7 +1,7 @@
 <% if @feed_items.any? %>
-  <ol class="microposts">
+  <%= will_paginate @feed_items, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, class: "pagination" %>
+  <ol class="microposts row">
     <%= render @feed_items %>
   </ol>
-  <%= will_paginate @feed_items,
-                    params: { controller: :static_pages, action: :home } %>
+  <%#= will_paginate @feed_items %>
 <% end %>
