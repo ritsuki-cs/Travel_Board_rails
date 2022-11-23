@@ -385,6 +385,14 @@ textarea {
   }
 }
 
+.pin {
+  background-image: url("<%= asset_path('pin.png') %>");
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 14px;
+  left: 180px;
+}
+
 
 /* micropost-detail */
 .micropost_detail {
@@ -428,14 +436,6 @@ textarea {
 }
 
 
-.pin {
-  background-image: url("<%= asset_path('pin.png') %>");
-  background-repeat: no-repeat;
-  position: absolute;
-  top: 14px;
-  left: 180px;
-}
-
 
 
 /*slick setting*/
@@ -446,6 +446,7 @@ textarea {
   .slick-prev {
     left: 15px !important;
     opacity: 1 !important;
+    color: black !important;
     z-index: 1;
   }
   .slick-next {
