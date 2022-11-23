@@ -1,47 +1,50 @@
 <% provide(:title, "Post Detail") %>
-<div class="row">
-  <div class="title">
-    <h1>Micropost</h1>
-  </div>
-  <div class="col-md-7">
-    <ol class="microposts">
-      <div class="content image-detail">
-        <ul class="slider">
+<div class="row micropost_detail">
+  <h1 class="title">Micropost</h1>
+  <section class="row">
+    <div class="col-md-7">
+      <ol class="microposts">
+        <ul class="slider image-detail">
           <% @micropost.images.each do |image| %>
-          <li><%= image_tag @micropost.display_image(image) %></li>
+            <li><%= image_tag @micropost.display_image(image) %></li>
           <% end %>
         </ul>
+      </ol>
+    </div>
+    <aside class="col-md-5">
+      <div class="micropost_data">
+        <div class="map_mini">
+          <div id="map_mini"></div>
+        </div>
+        <div class="data_detail">
+          <section class="user_info">
+            <%= link_to gravatar_for(@micropost.user, size: 40), @micropost.user %>
+            <span class="user"><%= link_to @micropost.user.name, @micropost.user %></span>
+          </section>
+          <p><%= @micropost.address %></p><hr>
+          <p><%= @micropost.content %></p><hr>
+          <p class="created_time">Posted <%= time_ago_in_words(@micropost.created_at) %> ago.</p>
+          <% if current_user?(@micropost.user) %>
+            <%= link_to "delete", @micropost, method: :delete,
+                                             data: { confirm: "You sure?" } %>
+          <% end %>
+        </div>
       </div>
-    </ol>
-  </div>
-  <aside class="col-md-5">
-    <div class="map_mini">
-      <div id="map_mini"></div>
-    </div>
-    <div class="user_card">
-      <section class="user_info">
-        <%= link_to gravatar_for(@micropost.user, size: 40), @micropost.user %>
-        <span class="user"><%= link_to @micropost.user.name, @micropost.user %></span><br><br>
-      </section>
-      <p><%= @micropost.address %></p>
-      <p><%= @micropost.content %></p>
-      <p>Posted <%= time_ago_in_words(@micropost.created_at) %> ago.</p>
-      <% if current_user?(@micropost.user) %>
-        <%= link_to "delete", @micropost, method: :delete,
-                                         data: { confirm: "You sure?" } %>
-      <% end %>
-    </div>
-  </aside>
+    </aside>
+  </section>
 </div>
 
 
 <script type="text/javascript">
-  // slick
+  //slick
   $('.slider').slick({
-    autoplay:false,
-    autoplaySpeed:5000,
-    dots:true,
-  });
+    autoplay: false,       //自動再生
+    autoplaySpeed: 2000,  //自動再生のスピード
+    speed: 800,           //スライドするスピード
+    dots: true,           //スライド下のドット
+    arrows: true,         //左右の矢印
+    infinite: true,       //永久にループさせる
+});
   
   // Google Map API
   var map;

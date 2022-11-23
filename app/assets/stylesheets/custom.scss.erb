@@ -40,6 +40,18 @@ body {
   width: 500px;
 }
 
+.title {
+  background-color: white;
+  border-radius: 10px;
+  width: 50%;
+  height: 70px;
+  vertical-align: middle;
+  text-align: center;
+  color: #deb887;
+  line-height: 70px;
+  margin: 50px auto;
+}
+
 
 /* typography */
 
@@ -105,6 +117,7 @@ header {
 main {
   flex-direction: column;
   flex-grow: 1;
+  margin-bottom: 50px;
 }
 
 
@@ -215,7 +228,6 @@ textarea {
 }
 
 
-
 .user_board {
   width: 100%;
 
@@ -266,6 +278,7 @@ textarea {
     }
   }
   
+  
   /* microposts */
   .user_microposts {
     flex-direction: column;
@@ -279,9 +292,6 @@ textarea {
       height: 170px;
     }
     .pin {
-      background-image: url("<%= asset_path('pin.png') %>");
-      background-repeat: no-repeat;
-      position: absolute;
       top: 14px;
       left: 140px;
     }
@@ -364,13 +374,6 @@ textarea {
   }
 }
 
-div.image {
-  margin-top: 10px;
-  input {
-    border: 0;
-  }
-}
-
 .contribute-element {
   text-align: center;
   margin-bottom: 60px;
@@ -382,6 +385,49 @@ div.image {
   }
 }
 
+
+/* micropost-detail */
+.micropost_detail {
+  flex-direction: column;
+  width: 100%;
+  .microposts {
+    margin: 0 auto;
+    width: 34vw;
+    img {
+      padding: 10px;
+      margin: 0 auto;
+      background-color: white;
+      width: auto;
+      height: 18vw;
+      max-width: 28vw;
+    }
+  }
+  aside {
+    padding: 0 20px;
+    .micropost_data {
+      background-color: white;
+      .data_detail {
+        padding: 0 15px 15px 15px;
+        .user_info {
+          z-index: 2;
+          padding: 0;
+        }
+        p {
+          font-size: 15px;
+          margin: 0;
+          &.created_time {
+            font-size: 12px;
+          }
+        }
+        hr {
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+
 .pin {
   background-image: url("<%= asset_path('pin.png') %>");
   background-repeat: no-repeat;
@@ -390,63 +436,43 @@ div.image {
   left: 180px;
 }
 
-.title {
-  background-color: white;
-  border-radius: 10px;
-  width: 50%;
-  height: 70px;
-  vertical-align: middle;
-  text-align: center;
-  color: #deb887;
-  line-height: 70px;
-  margin: 50px auto;
-}
+
 
 /*slick setting*/
-.slick-prev:before,
-.slick-next:before {
-  color: #000;
-}
 .slider {
-  position: absolute;
-  padding: 1vw;
-  width: 47%;
-  height: 24vw;
-  float: left;
-  top: 1vw;
-}
-.slider img {
-  height: 18vw;
-  width: auto;
-  object-fit: cover;
-  margin: auto;
-  margin-top: 2vw;
-}
-.image-detail ul {
-  position: relative;
-  bottom: 5vw;
-  background: #fffcf4;
-  border-radius: 15px; /*角の丸み*/
-  box-shadow: none;
-  padding: 0.1vw;
-  margin-top: 5vw;
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
-  li {
-    line-height: 1.5;
-    padding: 0.5em 0;
+  width: 34vw;
+  margin: 0 auto;
+  padding: 0;
+  .slick-prev {
+    left: 15px !important;
+    opacity: 1 !important;
+    z-index: 1;
   }
-  .slick-dots {
-    height: 0;
+  .slick-next {
+    right: 15px !important;
+    opacity: 1;
+    z-index: 1;
   }
-}
-.edit a,
-.delete a {
-  color: white;
+  img {
+    margin: 0 auto;
+    height: 100%;
+  }
+  .slick-slide {
+    height: auto !important;
+  }
+  .slick-dots li button:before {
+    color: white;
+    opacity: 1;
+  }
+  .slick-dots li.slick-active button:before{
+    color: black;
+    opacity: 1;
+  }
 }
 
+
 /* map */
+
 .map {
   height: 300px;
   width: 400px;
@@ -458,13 +484,15 @@ div.image {
 }
 
 .map_mini {
-  height: 220px;
-  width: 270px;
+  height: 14vw;
+  width: 100%;
   padding: 10px;
-  background-color: white;
+  margin: auto;
+  z-index: 1;
 }
 
 #map_mini {
-  height: 200px;
-  width: 250px;
+  height: 13vw;
+  width: 100%;
+  margin: 0 auto;
 }
