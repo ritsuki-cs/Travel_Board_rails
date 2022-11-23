@@ -9,6 +9,18 @@ $gray-medium-light: #eaeaea;
   box-sizing:         border-box;
 }
 
+
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+
+
 /* universal */
 
 html, body {
@@ -26,6 +38,34 @@ body {
 
 .alert {
   width: 500px;
+}
+
+
+/* typography */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  // color: rgba(#d3d3d3,1.0);
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
 }
 
 
@@ -84,7 +124,7 @@ footer {
 }
 
 
-/* welcome page */
+/* home welcome-page */
 
 .welcome {
   padding: 30px;
@@ -94,6 +134,19 @@ footer {
   }
   h2 {
     font-size: 60px;
+  }
+}
+
+
+/* home micropost */
+
+.home {
+  height: 100%;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 20px;
+  .pagination {
+    margin-left: 30px;
   }
 }
 
@@ -161,75 +214,50 @@ textarea {
   text-align: center;
 }
 
-/* typography */
-
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
-}
-
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-h2 {
-  font-size: 2em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
-  // color: rgba(#d3d3d3,1.0);
-}
-
-p {
-  font-size: 1.1em;
-  line-height: 1.7em;
-}
 
 
-/* miscellaneous */
-
-.debug_dump {
-  clear: both;
-  float: left;
+.user_board {
   width: 100%;
-  margin-top: 45px;
-  @include box_sizing;
-}
 
-/* sidebar */
-
-aside {
-  .user_card{
-    background-color: white;
-    border-radius: 15px;
-    margin: 10% 0;
-    height: 300px;
-    width: 100%;
-    padding: 5px 15px;
-    .btn {
-      margin-top: 10px;
-    }
-  }
-  
-  section.user_info {
-    margin-top: 20px;
-  }
-  section {
+  /* sidebar */
+  aside {
     padding: 10px 0;
     margin-top: 20px;
-    &:first-child {
-      border: 0;
-      padding-top: 0;
+    
+    .user_card{
+      background-color: white;
+      border-radius: 15px;
+      margin: 10% 0;
+      height: 300px;
+      width: 100%;
+      padding: 15px;
+      .stats {
+        overflow: auto;
+        margin-top: 0;
+        padding: 0;
+        a {
+          padding: 0 10px;
+          color: gray;
+          &:first-child {
+            padding-left: 0;
+            border: 0;
+          }
+          &:hover {
+            text-decoration: none;
+            color: blue;
+          }
+        }
+        strong {
+          display: block;
+        }
+      }
+      .btn {
+        width: 70%;
+        margin: 10px 20px;
+      }
     }
-    span {
-      display: block;
-      margin-bottom: 3px;
-      line-height: 1;
-    }
-    h1 {
+    
+    h2 {
       font-size: 1.4em;
       text-align: left;
       letter-spacing: -1px;
@@ -237,51 +265,52 @@ aside {
       margin-top: 0px;
     }
   }
-}
-
-.gravatar {
-  float: left;
-  margin-right: 10px;
-}
-
-.gravatar_edit {
-  margin-top: 15px;
-}
-
-.stats {
-  overflow: auto;
-  margin-top: 0;
-  padding: 0;
-  a {
-    padding: 0 10px;
-    color: gray;
-    &:first-child {
-      padding-left: 0;
-      border: 0;
+  
+  /* microposts */
+  .user_microposts {
+    flex-direction: column;
+    padding: 0 40px;
+    
+    .pagination {
+      margin-left: 50px;
     }
-    &:hover {
-      text-decoration: none;
-      color: blue;
+    img {
+      width: 240px;
+      height: 170px;
+    }
+    .pin {
+      background-image: url("<%= asset_path('pin.png') %>");
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 14px;
+      left: 140px;
     }
   }
-  strong {
-    display: block;
-  }
-}
-
-.user_avatars {
-  overflow: auto;
-  margin-top: 10px;
+  
   .gravatar {
-    margin: 1px 1px;
+    float: left;
+    margin-right: 10px;
   }
-  a {
+  
+  .gravatar_edit {
+    margin-top: 15px;
+  }
+  
+  
+  .user_avatars {
+    overflow: auto;
+    margin-top: 10px;
+    .gravatar {
+      margin: 1px 1px;
+    }
+    a {
+      padding: 0;
+    }
+  }
+  
+  .users.follow {
     padding: 0;
   }
-}
-
-.users.follow {
-  padding: 0;
 }
 
 
@@ -298,6 +327,7 @@ aside {
   }
 }
 
+
 /* microposts */
 
 .microposts {
@@ -312,7 +342,7 @@ aside {
   }
   .content {
     display: block;
-    margin-left: 40px;
+    margin: 0 25px;
     img {
       display: block;
       padding: 7px;
@@ -328,12 +358,9 @@ aside {
     margin-right: 10px;
     margin-top: 5px;
   }
-}
-
-aside {
-  textarea {
-    height: 100px;
-    margin-bottom: 5px;
+  img {
+    width: 330px;
+    height: 220px;
   }
 }
 
@@ -341,19 +368,6 @@ div.image {
   margin-top: 10px;
   input {
     border: 0;
-  }
-}
-
-
-
-/* micropost-home */
-.home {
-  height: 100%;
-  flex-direction: column;
-  width: 100%;
-  margin-bottom: 20px;
-  .pagination {
-    margin-left: 30px;
   }
 }
 

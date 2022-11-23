@@ -1,31 +1,25 @@
 <% provide(:title, @user.name) %>
-<div class="row">
+<div class="row user_board">
   <aside class="col-md-2">
     <div class="user_card">
-      <section class="user_info">
-        <h1>
+      <div class="user_info">
+        <h2>
           <%= gravatar_for @user %>
           <%= @user.name %>
-        </h1>
-      </section>
-      <section class="stats">
-        <%= render 'shared/stats' %>
-      </section>
+        </h2>
+      </div>
+      <%= render 'shared/stats' %>
       <%= link_to "New Post", new_micropost_path, class: "btn btn-primary" %>
     </div>
   </aside>
-  <div class="col-md-10">
+  <div class="col-md-10 row user_microposts">
     <%= render 'follow_form' if logged_in? %>
     <% if @user.microposts.any? %>
-      <div class="title">
-        <h2>Microposts (<%= @user.microposts.count %>)</h2>
-      </div>
-      <ol class="microposts">
+      <h2 class="title">Microposts (<%= @user.microposts.count %>)</h2>
+      <%= will_paginate @microposts %>
+      <ol class="microposts row">
         <%= render @microposts %>
       </ol>
-      <div>
-        <%= will_paginate @microposts %>
-      </div>
     <% end %>
   </div>
 </div>
