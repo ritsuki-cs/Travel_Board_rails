@@ -35,4 +35,4 @@ amazon:
 
 render:
   service: Disk
-  root: '/opt/activestorage-data'
+  root: '/storage'
