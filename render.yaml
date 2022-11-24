@@ -1,0 +1,20 @@
+databases:
+  - name: Travel_Board_Database
+    databaseName: travel_board_lh3j
+    user: travel_board_user
+    region: singapore
+
+services:
+  - type: web
+    name: Travel_Board
+    env: ruby
+    region: singapore
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: <%= ENV['DATABASE_URL'] %>
+        fromDatabase:
+          name: render_app
+          property: connectionString
+      - key: <%= ENV['RAILS_MASTER_KEY'] %>
+        sync: false
