@@ -32,7 +32,3 @@ amazon:
 #   service: Mirror
 #   primary: local
 #   mirrors: [ amazon, google, microsoft ]
-
-render:
-  service: Disk
-  root: '/storage'
