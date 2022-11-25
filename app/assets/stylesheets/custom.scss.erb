@@ -436,8 +436,6 @@ textarea {
 }
 
 
-
-
 /*slick setting*/
 .slider {
   width: 34vw;
@@ -471,6 +469,51 @@ textarea {
   }
 }
 
+
+/* create-micropost */
+.create_micropost {
+  flex-direction: column;
+  width: 100%;
+  
+  .map {
+    height: 350px;
+    width: 400px;
+    padding: 10px;
+    margin: 10% auto;
+    background-color: white;
+    #map {
+      height: 330px;
+      width: 380px;
+    }
+  }
+  
+  .micropost_form {
+    flex-direction: column;
+    background-image: url("<%= asset_path('husen2.png') %>");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: auto;
+    padding: 80px 80px 60px 50px;
+    p {
+      margin: 0;
+      margin-top: 5px;
+    }
+    .decide_place {
+      width: 100%;
+      margin: 0 auto;
+      button {
+        height: 37px;
+        margin: auto;
+      }
+    }
+    .image {
+      background-color:white;
+    }
+    .field {
+      border: none;
+    }
+  }
+}
 
 /* map */
 

@@ -1,18 +1,21 @@
 <% provide(:title, 'New Micropost') %>
 <% provide(:button_text, 'Post') %>
-<div class="row">
-  <div class="title">
-    <h1>Create Micropost</h1>
-  </div>
-  <div class="map col-md-8">
-    <div id="map"></div>
-  </div>
-  <div class="col-md-4">
-    <input type="text" name="input_place" id="input_place" placeholder="Input place..." class="form-control mr-sm-2">
-    <%= button_tag "Search", { id: "search_place", class: "btn" } %>
-    <section class="micropost_form">
+<div class="row create_micropost">
+  <h1 class="title">Create Micropost</h1>
+  <div class="row">
+    <div class="col-md-7">
+      <div class="map">
+        <div id="map"></div>
+      </div>
+    </div>
+    <div class="col-md-5 micropost_form row">
+      <p>Place</p>
+      <div class="decide_place row">
+        <input type="text" name="input_place" id="input_place" placeholder="Input place..." class="form-control col-md-10">
+        <%= button_tag "Select", { id: "search_place", class: "btn btn-primary btn-sm col-md-2" } %>
+      </div>
       <%= render 'shared/micropost_form' %>
-    </section>
+    </div>
   </div>
 </div>
 
@@ -27,7 +30,8 @@
   
       map = new google.maps.Map(document.getElementById('map'), {
         center: default_point,
-        zoom: 15
+        zoom: 15,
+        disableDefaultUI: true,
       });
       
       marker = new google.maps.Marker({
