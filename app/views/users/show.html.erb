@@ -2,18 +2,16 @@
 <div class="row user_board">
   <aside class="col-md-2">
     <div class="user_card">
-      <div class="user_info">
-        <h2>
-          <%= gravatar_for @user %>
-          <%= @user.name %>
-        </h2>
+      <div class="user_info row">
+        <%= gravatar_for @user %>
+        <h2><%= @user.name %></h2>
+        <%= render 'follow_form' if logged_in? %>
       </div>
       <%= render 'shared/stats' %>
-      <%= link_to "New Post", new_micropost_path, class: "btn btn-primary" %>
+      <%= link_to "New Post", new_micropost_path, class: "btn btn-primary", style: "width: 100%; margin-left: 0;" %>
     </div>
   </aside>
   <div class="col-md-10 row user_microposts">
-    <%= render 'follow_form' if logged_in? %>
     <% if @user.microposts.any? %>
       <h2 class="title">Microposts (<%= @user.microposts.count %>)</h2>
       <%= will_paginate @microposts %>
