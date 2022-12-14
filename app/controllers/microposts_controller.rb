@@ -11,8 +11,10 @@ class MicropostsController < ApplicationController
     @micropost = current_user.microposts.build(micropost_params)
     @micropost.images.attach(params[:micropost][:images])
     
-    
+    tags_list = params[:micropost][:tags].split(nil)
+
     if @micropost.save
+      @micropost.save_tag(tags_list)
       flash[:success] = "Micropost created!"
       redirect_to root_url
     else  
@@ -30,6 +32,12 @@ class MicropostsController < ApplicationController
   def show
     @micropost = Micropost.find_by(id: params[:id])
     @user = User.find_by(id: @micropost.user_id)
+    tags_list = @micropost.tags.pluck(:name)
+    @tags = ""
+    tags_list.each do |tag|
+      @tags += "##{tag}, "
+    end
+    @tags = @tags[..-3]
   end
   
   private

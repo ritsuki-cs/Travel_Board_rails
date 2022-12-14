@@ -11,6 +11,10 @@
     <p>Comment</p>
     <%= f.text_area :content, placeholder: "Compose new micropost..." %>
   </div>
+  <div class="tags">
+    <p>Tags</p>
+    <%= f.text_field :tags, value: @micropost.tags.pluck(:name), placeholder: "Tags (Separate each tag with a space)" %>
+  </div>
   <%= f.submit "Post", class: "btn btn-primary" %>
 <% end %>
 

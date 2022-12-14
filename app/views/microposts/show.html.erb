@@ -23,6 +23,7 @@
           </section>
           <p><%= @micropost.address %></p><hr>
           <p><%= @micropost.content %></p><hr>
+          <p><%= @tags %></p><hr>
           <p class="created_time">Posted <%= time_ago_in_words(@micropost.created_at) %> ago.</p>
           <% if current_user?(@micropost.user) %>
             <%= link_to "delete", @micropost, method: :delete,

@@ -6,5 +6,8 @@
   <ol class="microposts row">
     <%= render @feed_items %>
   </ol>
-  <%#= will_paginate @feed_items %>
+<% else %>
+  <div class="row nav_home">
+    <%= link_to "New Post", new_micropost_path, class: "btn btn-primary new_post" %>
+  </div>
 <% end %>
