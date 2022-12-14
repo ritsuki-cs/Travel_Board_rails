@@ -1,5 +1,7 @@
 class Micropost < ApplicationRecord
   belongs_to :user
+  has_many :micropost_tag_relations, dependent: :destroy
+  has_many :tags, through: :micropost_tag_relations
   has_many_attached :images
   default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true
