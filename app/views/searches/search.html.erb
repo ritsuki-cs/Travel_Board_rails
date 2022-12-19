@@ -1,0 +1,24 @@
+<% provide(:title, "Search") %>
+<div class="row home">
+  <h1 class="title">Search Result</h1>
+  <% if @microposts.any? %>
+    <div class="row nav_home">
+      <%= will_paginate @microposts, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, class: "pagination" %>
+    </div>
+    <!--検索対象モデルがUserの時 -->
+    <% if @range == "User" %>
+      <% @users.each do |user| %>
+        <p><%= user.name %></p>
+      <% end %>
+    <% else %>
+      <!--検索対象モデルがUserではない時(= 検索対象モデルがMicropostの時) -->
+      <ol class="microposts row">
+        <%= render @microposts %>
+      </ol>
+    <% end %>
+  <% else %>
+    <div class="row nav_home">
+      <h2>Can't search result</h2>
+    </div>
+  <% end %>
+</div>

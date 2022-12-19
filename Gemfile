@@ -23,6 +23,7 @@ gem 'jquery-rails'
 gem 'dotenv-rails'
 gem 'bootstrap',                  '~> 4.4.1'
 gem 'will_paginate-bootstrap4'
+gem 'kaminari'
 
 group :development, :test do
   gem 'sqlite3', '1.4.2'
