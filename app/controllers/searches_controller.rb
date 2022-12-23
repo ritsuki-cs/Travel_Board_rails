@@ -5,9 +5,9 @@ class SearchesController < ApplicationController
     @range = params[:range]
 
     if @range == "User"
-      @users = User.looks(params[:search], params[:word])
+      @users = Kaminari.paginate_array(User.looks(params[:word])).page(params[:page]).per(10)
     else
-      @microposts = Kaminari.paginate_array(Micropost.looks(params[:search], params[:word])).page(params[:page]).per(6)
+      @microposts = Kaminari.paginate_array(Micropost.looks(params[:word])).page(params[:page]).per(6)
     end
   end
 end

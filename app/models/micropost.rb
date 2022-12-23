@@ -35,14 +35,8 @@ class Micropost < ApplicationRecord
   end
   
   # 検索方法分岐
-  def self.looks(search, word)
-    if search == "perfect_match"
-      tags = Tag.where("name LIKE?","#{word}")
-    elsif search == "forward_match"
-      tags = Tag.where("name LIKE?","#{word}%")
-    elsif search == "partial_match"
-      tags = Tag.where("name LIKE?","%#{word}%")
-    end
+  def self.looks(word)
+    tags = Tag.where("name LIKE?","%#{word}%")
     @microposts = []
     tags.each do |tag|
       @microposts.append(*(tag.microposts))
