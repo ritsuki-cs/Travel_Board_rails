@@ -3,16 +3,16 @@
   <h1 class="title">Search Result</h1>
   <% if @range == "User" %>
     <% if @users.any? %>
-      <div class="row nav_home">
+      <div class="nav_home search_users">
         <%= will_paginate @users, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, class: "pagination" %>
+        <div class="row users_list">
+          <% @users.each do |user| %>
+            <p><%= user.name %></p>
+          <% end %>
+        </div>
       </div>
-      <% @users.each do |user| %>
-        <p><%= user.name %></p>
-      <% end %>
     <% else %>
-      <div class="row nav_home">
-        <h2>No result found</h2>
-      </div>
+      <h1>No result found</h1>
     <% end %>
   <% else %>
     <% if @microposts.any? %>
@@ -24,9 +24,7 @@
         <%= render @microposts %>
       </ol>
     <% else %>
-      <div class="row nav_home">
-        <h2>No result found</h2>
-      </div>
+      <h1>No result found</h1>
     <% end %>
   <% end %>
 </div>
