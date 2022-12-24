@@ -6,9 +6,9 @@
       <div class="nav_home search_users">
         <%= will_paginate @users, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, class: "pagination" %>
         <div class="row users_list">
-          <% @users.each do |user| %>
-            <p><%= user.name %></p>
-          <% end %>
+          <ul class="users">
+            <%= render @users %>
+          </ul>
         </div>
       </div>
     <% else %>

@@ -32,12 +32,7 @@ class MicropostsController < ApplicationController
   def show
     @micropost = Micropost.find_by(id: params[:id])
     @user = User.find_by(id: @micropost.user_id)
-    tags_list = @micropost.tags.pluck(:name)
-    @tags = ""
-    tags_list.each do |tag|
-      @tags += "##{tag}, "
-    end
-    @tags = @tags[..-3]
+    @tags_list = @micropost.tags.pluck(:name)
   end
   
   private
