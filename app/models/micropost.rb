@@ -43,7 +43,6 @@ class Micropost < ApplicationRecord
       tags = Tag.where("name LIKE?","%#{word}%")
       micropost_list = []
       tags.each do |tag|
-        # @microposts.append(*(tag.microposts))
         micropost_list.append(*(tag.micropost_ids))
       end
       @microposts = Micropost.where(id: micropost_list.uniq)
